@@ -77,29 +77,44 @@ const SearchAndReplaceForm = () => {
       <form onSubmit={submitHandler}>
         {!appState.showDownload && (
           <div className="inputs-container">
-            <input
-              className="file-btn"
-              type="file"
-              accept=".txt"
-              name="selectedFile"
-              onChange={onChange}
-            />
-            <input
-              type="text"
-              className="text-input"
-              placeholder="Enter a string to search and replace"
-              name="search_param"
-              value={appState.search_param}
-              onChange={onChange}
-            />
-            <input
-              type="text"
-              className="text-input"
-              placeholder="Enter a replacement for the search string"
-              name="replacement_param"
-              value={appState.replacement_param}
-              onChange={onChange}
-            />
+            <label htmlFor="selectedFile" className="input-label">
+              Select the text file you want edited
+            </label>
+            <div className="input-div">
+              <input
+                className="file-btn"
+                type="file"
+                accept=".txt"
+                name="selectedFile"
+                onChange={onChange}
+              />
+            </div>
+            <label htmlFor="search_param" className="input-label">
+              What string do you want replaced?
+            </label>
+            <div className="input-div">
+              <input
+                type="text"
+                className="text-input"
+                placeholder="Enter a string to search and replace"
+                name="search_param"
+                value={appState.search_param}
+                onChange={onChange}
+              />
+            </div>
+            <label htmlFor="replacement_param" className="input-label">
+              What do you want to replace it with?
+            </label>
+            <div className="input-div">
+              <input
+                type="text"
+                className="text-input"
+                placeholder="Enter a replacement for the search string"
+                name="replacement_param"
+                value={appState.replacement_param}
+                onChange={onChange}
+              />
+            </div>
           </div>
         )}
         {!appState.showDownload &&

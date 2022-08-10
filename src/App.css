@@ -1,3 +1,7 @@
+body {
+  background-color: whitesmoke;
+}
+
 .App {
   margin: 5% auto;
   text-align: center;
@@ -7,4 +11,10 @@
   color: whitesmoke;
   border: 2px solid whitesmoke;
   border-radius: 10px;
+}
+
+.inputs-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
