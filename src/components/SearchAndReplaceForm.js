@@ -59,9 +59,17 @@ const SearchAndReplaceForm = () => {
   };
 
   const downloadHandler = () => {
-    console.log("TEXT", appState.newFileText);
-    console.log("count", appState.count);
-    console.log(appState.selectedFile.name);
+    // create new blob to save new text to
+    const blob = new Blob([appState.newFileText], {
+      type: "text/plain;charset=utf-8",
+    });
+    // remove .txt from old file name for reuse in new one
+    const new_file_name = appState.selectedFile.name.slice(
+      0,
+      appState.selectedFile.name.length - 4
+    );
+    // download .txt file using new text and file name
+    saveAs(blob, new_file_name);
   };
 
   return (
