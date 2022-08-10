@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { saveAs } from "file-saver";
 
 const SearchAndReplaceForm = () => {
   const initialAppState = {
@@ -8,6 +9,7 @@ const SearchAndReplaceForm = () => {
     replacement_param: "",
     newFileText: "",
     count: 0,
+    showDownload: false,
   };
   const [appState, setAppState] = useState(initialAppState);
 
@@ -43,9 +45,10 @@ const SearchAndReplaceForm = () => {
           ...appState,
           newFileText: new_text,
           count: count,
+          showDownload: true,
         });
-        console.log("NEW TEXT AFTER REPLACE", new_text);
-        console.log("NEW COUNT", count);
+        // console.log("NEW TEXT AFTER REPLACE", new_text);
+        // console.log("NEW COUNT", count);
       })
       .catch((err) => {
         console.log("ERROR--> ", err);
@@ -53,6 +56,12 @@ const SearchAndReplaceForm = () => {
     // make a new file with new text
     // provide it for download
     // clear form
+  };
+
+  const downloadHandler = () => {
+    console.log("TEXT", appState.newFileText);
+    console.log("count", appState.count);
+    console.log(appState.selectedFile.name);
   };
 
   return (
@@ -84,6 +93,12 @@ const SearchAndReplaceForm = () => {
           Search file for {appState.search_param} and replace with{" "}
           {appState.replacement_param}
         </button>
+
+        {appState.showDownload && (
+          <button className="download-btn" onClick={downloadHandler}>
+            Download your edited file
+          </button>
+        )}
       </form>
     </div>
   );
