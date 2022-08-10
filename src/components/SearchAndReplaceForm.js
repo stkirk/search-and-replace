@@ -28,22 +28,24 @@ const SearchAndReplaceForm = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     // pull the text out of the file
-    // make the necessary edits
-    // make a new file with new text
-    // provide it for download
-    // clear form
     formValues.selectedFile
       .text()
       .then((text) => {
+        // make the necessary edits, case insentive option add i param to regex
+        const regex = new RegExp(formValues.search_param, "g");
+        const new_text = text.replace(regex, formValues.replacement_param);
         setFormValues({
           ...formValues,
-          fileText: text,
+          fileText: new_text,
         });
-        console.log(text);
+        console.log("NEW TEXT AFTER REPLACE", new_text);
       })
       .catch((err) => {
         console.log("ERROR--> ", err);
       });
+    // make a new file with new text
+    // provide it for download
+    // clear form
   };
 
   return (
