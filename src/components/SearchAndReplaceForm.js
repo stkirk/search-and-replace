@@ -96,7 +96,7 @@ const SearchAndReplaceForm = () => {
               <input
                 type="text"
                 className="text-input"
-                placeholder="Enter a string to search and replace"
+                placeholder="Enter search string"
                 name="search_param"
                 value={appState.search_param}
                 onChange={onChange}
@@ -109,7 +109,7 @@ const SearchAndReplaceForm = () => {
               <input
                 type="text"
                 className="text-input"
-                placeholder="Enter a replacement for the search string"
+                placeholder="Enter replacement string"
                 name="replacement_param"
                 value={appState.replacement_param}
                 onChange={onChange}
