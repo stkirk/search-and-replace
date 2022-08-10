@@ -47,15 +47,10 @@ const SearchAndReplaceForm = () => {
           count: count,
           showDownload: true,
         });
-        // console.log("NEW TEXT AFTER REPLACE", new_text);
-        // console.log("NEW COUNT", count);
       })
       .catch((err) => {
         console.log("ERROR--> ", err);
       });
-    // make a new file with new text
-    // provide it for download
-    // clear form
   };
 
   const downloadHandler = () => {
@@ -70,6 +65,8 @@ const SearchAndReplaceForm = () => {
     );
     // download .txt file using new text and file name
     saveAs(blob, new_file_name);
+    // clear form
+    setAppState(initialAppState);
   };
 
   return (
@@ -97,12 +94,15 @@ const SearchAndReplaceForm = () => {
           value={appState.replacement_param}
           onChange={onChange}
         />
-        {!appState.showDownload && (
-          <button className="submit-btn">
-            Search file for {appState.search_param} and replace with{" "}
-            {appState.replacement_param}
-          </button>
-        )}
+        {!appState.showDownload &&
+          appState.selectedFile &&
+          appState.search_param.length > 0 &&
+          appState.replacement_param.length > 0 && (
+            <button className="submit-btn">
+              Search file for {appState.search_param} and replace with{" "}
+              {appState.replacement_param}
+            </button>
+          )}
 
         {appState.showDownload && (
           <div className="download-container">
