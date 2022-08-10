@@ -6,7 +6,8 @@ const SearchAndReplaceForm = () => {
     selectedFile: "",
     search_param: "",
     replacement_param: "",
-    fileText: "",
+    newFileText: "",
+    count: 0,
   };
   const [formValues, setFormValues] = useState(initialFormValues);
 
@@ -31,14 +32,20 @@ const SearchAndReplaceForm = () => {
     formValues.selectedFile
       .text()
       .then((text) => {
-        // make the necessary edits, case insentive option add i param to regex
+        // build regex for our search pattern, case insentive option add i to flag in regex
         const regex = new RegExp(formValues.search_param, "g");
+        // count occurences of search param using regex
+        const count = (text.match(regex) || []).length;
+        // make the necessary edits and count search terms in the file's text
         const new_text = text.replace(regex, formValues.replacement_param);
+        // set new_text and count to state
         setFormValues({
           ...formValues,
-          fileText: new_text,
+          newFileText: new_text,
+          count: count,
         });
         console.log("NEW TEXT AFTER REPLACE", new_text);
+        console.log("NEW COUNT", count);
       })
       .catch((err) => {
         console.log("ERROR--> ", err);
