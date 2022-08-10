@@ -68,32 +68,40 @@ const SearchAndReplaceForm = () => {
     setAppState(initialAppState);
   };
 
+  const resetForm = () => {
+    setAppState(initialAppState);
+  };
+
   return (
     <div className="form-container">
       <form onSubmit={submitHandler}>
-        <input
-          className="file-btn"
-          type="file"
-          accept=".txt"
-          name="selectedFile"
-          onChange={onChange}
-        />
-        <input
-          type="text"
-          className="text-input"
-          placeholder="Enter a string to search and replace"
-          name="search_param"
-          value={appState.search_param}
-          onChange={onChange}
-        />
-        <input
-          type="text"
-          className="text-input"
-          placeholder="Enter a replacement for the search string"
-          name="replacement_param"
-          value={appState.replacement_param}
-          onChange={onChange}
-        />
+        {!appState.showDownload && (
+          <div className="inputs-container">
+            <input
+              className="file-btn"
+              type="file"
+              accept=".txt"
+              name="selectedFile"
+              onChange={onChange}
+            />
+            <input
+              type="text"
+              className="text-input"
+              placeholder="Enter a string to search and replace"
+              name="search_param"
+              value={appState.search_param}
+              onChange={onChange}
+            />
+            <input
+              type="text"
+              className="text-input"
+              placeholder="Enter a replacement for the search string"
+              name="replacement_param"
+              value={appState.replacement_param}
+              onChange={onChange}
+            />
+          </div>
+        )}
         {!appState.showDownload &&
           appState.selectedFile &&
           appState.search_param.length > 0 &&
@@ -107,15 +115,16 @@ const SearchAndReplaceForm = () => {
         {appState.showDownload && (
           <div className="download-container">
             <p>
-              Search Term: {appState.search_param} was found {appState.count}{" "}
-              times
+              {appState.search_param} was found {appState.count} times
             </p>
             <p>
-              Replacement Term: {appState.replacement_param} was replaced{" "}
-              {appState.count} times
+              {appState.replacement_param} took its place {appState.count} times
             </p>
             <button className="download-btn" onClick={downloadHandler}>
               Download your edited file
+            </button>
+            <button className="reset-btn" onClick={resetForm}>
+              Try Again
             </button>
           </div>
         )}
