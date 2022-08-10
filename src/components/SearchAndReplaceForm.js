@@ -6,6 +6,7 @@ const SearchAndReplaceForm = () => {
     selectedFile: "",
     search_param: "",
     replacement_param: "",
+    fileText: "",
   };
   const [formValues, setFormValues] = useState(initialFormValues);
 
@@ -21,12 +22,28 @@ const SearchAndReplaceForm = () => {
         ...formValues,
         [e.target.name]: e.target.value,
       });
-      console.log(e.target.value);
     }
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
+    // pull the text out of the file
+    // make the necessary edits
+    // make a new file with new text
+    // provide it for download
+    // clear form
+    formValues.selectedFile
+      .text()
+      .then((text) => {
+        setFormValues({
+          ...formValues,
+          fileText: text,
+        });
+        console.log(text);
+      })
+      .catch((err) => {
+        console.log("ERROR--> ", err);
+      });
   };
 
   return (
