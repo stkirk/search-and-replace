@@ -97,15 +97,27 @@ const SearchAndReplaceForm = () => {
           value={appState.replacement_param}
           onChange={onChange}
         />
-        <button className="submit-btn">
-          Search file for {appState.search_param} and replace with{" "}
-          {appState.replacement_param}
-        </button>
+        {!appState.showDownload && (
+          <button className="submit-btn">
+            Search file for {appState.search_param} and replace with{" "}
+            {appState.replacement_param}
+          </button>
+        )}
 
         {appState.showDownload && (
-          <button className="download-btn" onClick={downloadHandler}>
-            Download your edited file
-          </button>
+          <div className="download-container">
+            <p>
+              Search Term: {appState.search_param} was found {appState.count}{" "}
+              times
+            </p>
+            <p>
+              Replacement Term: {appState.replacement_param} was replaced{" "}
+              {appState.count} times
+            </p>
+            <button className="download-btn" onClick={downloadHandler}>
+              Download your edited file
+            </button>
+          </div>
         )}
       </form>
     </div>
