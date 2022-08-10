@@ -19,7 +19,6 @@ const SearchAndReplaceForm = () => {
         ...appState,
         selectedFile: e.target.files[0],
       });
-      console.log("selectedFile--> ", e.target.files[0], e.target.name);
     } else {
       setAppState({
         ...appState,
@@ -75,6 +74,7 @@ const SearchAndReplaceForm = () => {
         <input
           className="file-btn"
           type="file"
+          accept=".txt"
           name="selectedFile"
           onChange={onChange}
         />
