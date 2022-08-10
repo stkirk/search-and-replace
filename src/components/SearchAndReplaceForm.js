@@ -25,9 +25,13 @@ const SearchAndReplaceForm = () => {
     }
   };
 
+  const submitHandler = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="form-container">
-      <form>
+      <form onSubmit={submitHandler}>
         <input
           className="file-btn"
           type="file"
@@ -50,6 +54,10 @@ const SearchAndReplaceForm = () => {
           value={formValues.replacement_param}
           onChange={onChange}
         />
+        <button className="submit-btn">
+          Search file for {formValues.search_param} and replace with{" "}
+          {formValues.replacement_param}
+        </button>
       </form>
     </div>
   );
