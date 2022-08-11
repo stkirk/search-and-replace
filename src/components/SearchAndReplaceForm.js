@@ -22,7 +22,7 @@ const SearchAndReplaceForm = () => {
     } else {
       setAppState({
         ...appState,
-        [e.target.name]: e.target.value,
+        [e.target.name]: e.target.value.toString(),
       });
     }
   };
