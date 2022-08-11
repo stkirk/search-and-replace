@@ -1,5 +1,5 @@
 import "./App.css";
-import SearchAndReplaceForm from "./components/SearchAndReplaceForm";
+import SearchAndReplace from "./components/SearchAndReplace";
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
       <h4>
         Looking to replace a word or string of characters in a text document?
       </h4>
-      <SearchAndReplaceForm />
+      <SearchAndReplace />
     </div>
   );
 }

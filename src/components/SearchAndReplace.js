@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { saveAs } from "file-saver";
 
-const SearchAndReplaceForm = () => {
+const SearchAndReplace = () => {
   const initialAppState = {
     // may need to set initial file as empty Blob for typing issues
     selectedFile: "",
@@ -126,26 +126,26 @@ const SearchAndReplaceForm = () => {
               {appState.replacement_param}
             </button>
           )}
-
-        {appState.showDownload && (
-          <div className="download-container">
-            <p>
-              {appState.search_param} was found {appState.count} times
-            </p>
-            <p>
-              {appState.replacement_param} took its place {appState.count} times
-            </p>
-            <button className="download-btn" onClick={downloadHandler}>
-              Download your edited file
-            </button>
-            <button className="reset-btn" onClick={resetForm}>
-              Try Again
-            </button>
-          </div>
-        )}
       </form>
+
+      {appState.showDownload && (
+        <div className="download-container">
+          <p>
+            {appState.search_param} was found {appState.count} times
+          </p>
+          <p>
+            {appState.replacement_param} took its place {appState.count} times
+          </p>
+          <button className="download-btn" onClick={downloadHandler}>
+            Download your edited file
+          </button>
+          <button className="reset-btn" onClick={resetForm}>
+            Try Again
+          </button>
+        </div>
+      )}
     </div>
   );
 };
 
-export default SearchAndReplaceForm;
+export default SearchAndReplace;
