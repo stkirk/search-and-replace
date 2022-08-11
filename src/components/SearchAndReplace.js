@@ -35,12 +35,14 @@ const SearchAndReplace = () => {
     appState.selectedFile
       .text()
       .then((text) => {
-        // build regex for our search pattern, case insentive option add i to flag in regex
-        const regex = new RegExp(appState.search_param, "g");
-        // count occurences of search param using regex
-        const count = (text.match(regex) || []).length;
-        // make the necessary edits and count search terms in the file's text
-        const new_text = text.replace(regex, appState.replacement_param);
+        // count occurences by splitting text on search term and counting gaps between indices
+        const count = text.split(appState.search_param).length - 1;
+
+        // make the necessary edits to original text
+        const new_text = text.replaceAll(
+          appState.search_param,
+          appState.replacement_param
+        );
         // set new_text and count to state
         setAppState({
           ...appState,
