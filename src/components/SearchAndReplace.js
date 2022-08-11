@@ -37,7 +37,7 @@ const SearchAndReplace = () => {
       .then((text) => {
         // count occurences by splitting text on search term and counting gaps between indices
         const count = text.split(appState.search_param).length - 1;
-
+        console.log("COUNT", text.split(appState.search_param));
         // make the necessary edits to original text
         const new_text = text.replaceAll(
           appState.search_param,

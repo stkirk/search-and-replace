@@ -50,12 +50,18 @@ const SearchAndReplaceForm = ({ appState, submitHandler, onChange }) => {
         appState.search_param.length > 0 &&
         appState.replacement_param.length > 0 && (
           <button className="submit-btn">
-            Search file for {appState.search_param} and replace with{" "}
-            {appState.replacement_param}
+            Search file for{" "}
+            {appState.search_param.length > 15
+              ? appState.search_param.slice(0, 15) + "..."
+              : appState.search_param}{" "}
+            and replace with{" "}
+            {appState.replacement_param.length > 15
+              ? appState.replacement_param.slice(0, 15) + "..."
+              : appState.replacement_param}
           </button>
         )}
     </form>
   );
 };
-
+// limit number of chars dynamically displayed on button from user input so we don't get overrun
 export default SearchAndReplaceForm;
