@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { saveAs } from "file-saver";
+import DownloadDisplay from "./DownloadDisplay";
 
 const SearchAndReplace = () => {
   const initialAppState = {
@@ -127,22 +128,12 @@ const SearchAndReplace = () => {
             </button>
           )}
       </form>
-
       {appState.showDownload && (
-        <div className="download-container">
-          <p>
-            {appState.search_param} was found {appState.count} times
-          </p>
-          <p>
-            {appState.replacement_param} took its place {appState.count} times
-          </p>
-          <button className="download-btn" onClick={downloadHandler}>
-            Download your edited file
-          </button>
-          <button className="reset-btn" onClick={resetForm}>
-            Try Again
-          </button>
-        </div>
+        <DownloadDisplay
+          appState={appState}
+          downloadHandler={downloadHandler}
+          resetForm={resetForm}
+        />
       )}
     </div>
   );
